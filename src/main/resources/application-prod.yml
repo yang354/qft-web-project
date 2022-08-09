@@ -1,0 +1,23 @@
+server:
+  port: 8085
+
+logging:
+  config: classpath:logback.xml
+
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /api/user/login
+      - /api/user/register
+      - /swagger-ui.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /v2/**
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/**
+      - /druid/**
+      - /static/qrcode/**
