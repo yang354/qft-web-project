@@ -1,9 +1,11 @@
 package com.qft.web.vo.result;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
+@ToString
 @Data
 public class RegulationsVO {
     private String _id;

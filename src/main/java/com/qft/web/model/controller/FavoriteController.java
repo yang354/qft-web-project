@@ -43,16 +43,17 @@ public class FavoriteController {
 
     }
 
-    @ApiOperation("是否收藏")
-    @ApiImplicitParams({
-            @ApiImplicitParam(value = "法律id",name = "lawId",dataType = "String"),
-            @ApiImplicitParam(value = "索引",name = "index",dataType = "String")
-    })
-    @PostMapping("/or/not/{id}")
-    public Result isFavorite(@PathVariable("id") String lawId,@RequestParam("index") String index){
-        Long count = favoriteService.isFavorite(lawId,index);
-        return Result.ok(count>0);
-    }
+
+//    @ApiOperation("是否收藏")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(value = "法律id",name = "lawId",dataType = "String"),
+//            @ApiImplicitParam(value = "索引",name = "index",dataType = "String")
+//    })
+//    @PostMapping("/or/not/{id}")
+//    public Result isFavorite(@PathVariable("id") String lawId,@RequestParam("index") String index){
+//        Long count = favoriteService.isFavorite(lawId,index);
+//        return Result.ok(count>0);
+//    }
 
 
 

@@ -31,6 +31,9 @@ public class TestHttpClient {
 
     @Test
     public void test1() throws IOException {
+        String s1 = "   第一条 总分多少第一条你好";
+        String split = s1.substring(s1.indexOf("第"),s1.indexOf("条")+1);
+        System.out.println(split);
         RegulationsQueryVO queryVO = new RegulationsQueryVO();
         queryVO.setCat("LEGAL_PROVISION");
         queryVO.setType("precise");
@@ -38,8 +41,8 @@ public class TestHttpClient {
         keywords.add("民族");
         keywords.add("精神");
         queryVO.setKeywords(keywords);
-//        queryVO.setPage_num(0);
-//        queryVO.setPage_size(10);
+        queryVO.setPage_num(0);
+        queryVO.setPage_size(10);
         HashMap<String, Object> filter = new HashMap<>();
         filter.put("place","context");
         filter.put("range","条");
