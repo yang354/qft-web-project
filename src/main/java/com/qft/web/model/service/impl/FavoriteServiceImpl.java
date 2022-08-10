@@ -40,7 +40,7 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
 
 
     @Override
-    public Result favorite(String lawId,Long index, Boolean isFavorite) {
+    public Result favorite(String lawId,String index, Boolean isFavorite) {
         //从Spring Security上下文获取用户信息
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //获取用户信息
@@ -55,7 +55,7 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
             int isSuccess = baseMapper.insert(favorite);
             if (isSuccess>0){
                 redisService.lPush(key,lawId);
-                redisService.add(lawId,index.toString());
+                redisService.add(lawId,index);
             }
             return Result.ok().msg("收藏成功");
         } else {
@@ -64,7 +64,7 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
             int isSuccess = baseMapper.delete(wrapper);
             if (isSuccess>0){
                 redisTemplate.opsForList().remove(key,1,lawId);
-                redisTemplate.opsForSet().remove(lawId,1,index.toString());
+                redisTemplate.opsForSet().remove(lawId,1,index);
 
 
             }
@@ -101,7 +101,7 @@ public class FavoriteServiceImpl extends ServiceImpl<FavoriteMapper, Favorite> i
 //    }
 
     @Override
-    public Long isFavorite(String lawId,Long index) {
+    public Long isFavorite(String lawId,String index) {
         //从Spring Security上下文获取用户信息
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //获取用户信息

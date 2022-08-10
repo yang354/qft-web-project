@@ -31,14 +31,14 @@ public class FavoriteController {
     @ApiOperation("收藏和取消收藏")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "法律id",name = "lawId",dataType = "String"),
-            @ApiImplicitParam(value = "索引",name = "index",dataType = "Long"),
+            @ApiImplicitParam(value = "索引",name = "index",dataType = "String"),
             @ApiImplicitParam(value = "是否收藏",name = "isFavorite",dataType = "Boolean")
     })
-    @PutMapping("/{id}/{index}/{isFavorite}")
+    @PostMapping("/{id}")
     public Result favorite(
             @PathVariable("id") String lawId,
-            @PathVariable("index") Long index,
-            @PathVariable("isFavorite") Boolean isFavorite){
+            @RequestParam("index") String index,
+            @RequestParam("isFavorite") Boolean isFavorite){
         return favoriteService.favorite(lawId,index,isFavorite);
 
     }
@@ -46,10 +46,10 @@ public class FavoriteController {
     @ApiOperation("是否收藏")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "法律id",name = "lawId",dataType = "String"),
-            @ApiImplicitParam(value = "索引",name = "index",dataType = "Long")
+            @ApiImplicitParam(value = "索引",name = "index",dataType = "String")
     })
-    @GetMapping("/or/not/{id}/{index}")
-    public Result isFavorite(@PathVariable("id") String lawId,@PathVariable("index") Long index){
+    @PostMapping("/or/not/{id}")
+    public Result isFavorite(@PathVariable("id") String lawId,@RequestParam("index") String index){
         Long count = favoriteService.isFavorite(lawId,index);
         return Result.ok(count>0);
     }

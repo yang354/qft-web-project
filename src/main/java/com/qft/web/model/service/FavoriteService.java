@@ -14,7 +14,7 @@ import com.qft.web.util.Result;
  */
 public interface FavoriteService extends IService<Favorite> {
 
-    Result favorite(String lawId, Long index, Boolean isFavorite);
+    Result favorite(String lawId, String index, Boolean isFavorite);
 
-    Long isFavorite(String lawId,Long index);
+    Long isFavorite(String lawId,String index);
 }

@@ -151,18 +151,16 @@ public class UserController {
         }
         HashMap<String, List<String>> result = new HashMap<>();
         Iterator<String> lawIdKey = map.keySet().iterator();
-        List<String> list = new ArrayList<>();
+
 
         while (lawIdKey.hasNext()){
             String lawId = lawIdKey.next();
+
             List<String> strings = map.get(lawId);
+
             IdQueryVO queryVO = new IdQueryVO();
             queryVO.setCat("LEGAL_PROVISION");
             queryVO.setId(lawId);
-//            HashMap<String, Integer> option = new HashMap<>();
-//            option.put("条",Integer.valueOf(1));
-//            option.put("款",Integer.valueOf(-1));
-//            queryVO.setOption(option);
             String objJson = JSON.toJSONString(queryVO, SerializerFeature.WriteClassName);
             String s = HttpClientUtils.doPost(
                     "http://houlong66.cn:27623/iais/sdk/api/v1/search-by-id",
@@ -173,27 +171,25 @@ public class UserController {
             ResultRegulationsVO regulationsVO =JSON.parseObject(s, ResultRegulationsVO.class);
             RegulationsVO regulationsVO1 = regulationsVO.getResult().get(0);
             List<String> hit_strips = regulationsVO1.getStrip_list();
+
+//            for (String s1:hit_strips){
+//                System.out.println(s1);
+//            }
+            List<String> list = new ArrayList<>();
+
+
             for (String s2:strings){
                 for (String s1:hit_strips) {
                     boolean contains = s1.contains(s2);
                     if (contains){
-                        System.out.println("****");
-                        System.out.println(s1);
+                        list.add(s1);
+                        //System.out.println(s1);
                     }
                 }
             }
-
-
-
-
-
-
-//            for (Integer integer:integers){
-//                System.out.println(lawId+"  "+integer );
-//                list.add(hit_strips.get(integer-1));
-//            }
-
+            Collections.sort(list);
             result.put(regulationsVO1.getTitle(),list);
+
         }
         //创建用户信息对象
         UserCenterVO userCenterVO = new UserCenterVO();
