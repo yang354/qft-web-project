@@ -1,5 +1,6 @@
 server:
   port: 8085
+  address: 8.134.18.54
 
 logging:
   config: classpath:logback.xml

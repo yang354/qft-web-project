@@ -1,7 +1,12 @@
 server:
   port: 9999
 
+
+
 spring:
+#  cloud:
+#    inetutils:
+#      preferred-networks: 8.134.18.54
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/db_qft?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
