@@ -63,9 +63,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         //对密码加密，设置用户不禁用等等
 
         String newPassword = passwordEncoder.encode(registerVO.getPassword());
+        System.out.println(newPassword);
         User addUser = new User();
         BeanUtils.copyProperties(registerVO,addUser);
         addUser.setPassword(newPassword);
+        addUser.setIsDelete(0);
         //添加
         baseMapper.insert(addUser);
     }
@@ -77,7 +79,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 
-        updateWrapper.eq("username",username).set("password",MD5.encrypt(password));
+        updateWrapper.eq("username",username).set("password",passwordEncoder.encode(password));
         baseMapper.update(null,updateWrapper);
     }
 }

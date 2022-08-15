@@ -61,6 +61,8 @@ secure:
 #      - /**
       - /api/user/login
       - /api/user/register
+      - /api/msm/send
+      - /api/msm/verification
       - /swagger-ui.html
       - /swagger-resources/**
       - /swagger/**

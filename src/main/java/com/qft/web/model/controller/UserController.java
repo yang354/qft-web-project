@@ -51,15 +51,7 @@ public class UserController {
     private JwtUtils jwtUtils;
 
 
-    /**
-     * 查询所有用户列表
-     * @return
-     */
-    @ApiOperation("查询所有用户列表")
-    @GetMapping("/listAll")
-    public Result listAll(){
-        return Result.ok(userService.list());
-    }
+
 
 
     /**

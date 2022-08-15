@@ -68,10 +68,6 @@ public class MsmController {
         //生成随机数，传递阿里云进行发送
         code = RandomUtil.getFourBitRandom();
 
-        redisService.set(MyConstant.MSG+phone,code,300L);
-        return Result.ok();
-
-
 //        Map<String, Object> param = new HashMap<>();
 //        param.put("code",code);
 //        //调用service的方法，发送
@@ -84,6 +80,10 @@ public class MsmController {
 //        }else{
 //            return Result.error().msg("短信发送失败");
 //        }
+
+//##########################测试#############################################3
+        redisService.set(MyConstant.MSG+phone,code,300L);
+        return Result.ok();
 
     }
 }
